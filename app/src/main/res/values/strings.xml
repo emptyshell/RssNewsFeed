@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">RSSNews</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="addLinkButton">Add Link</string>
+    <string name="infoTextEditHint">Enter your RSS link here</string>
+    <string name="action_settings">Settings</string>
+    <string name="addLinkText">Add new RSS feed link</string>
+    <string name="removeLinkText">Remove existing RSS feed link</string>
+    <string name="removeLinkButtonText">Remove</string>
+    <string name="doneButtonText">Done</string>
+    <string name="linkToManage">Select the link to manage posts</string>
+    <string name="postsToDelete">Insert the amount of posts to delete</string>
+    <string name="countOfPosts">Amount of posts</string>
+    <string name="amountPostsSave">Amount of posts to save in database</string>
+    <string name="setText">Set</string>
+    <string name="postLimit">Amount of posts limit</string>
+</resources>
