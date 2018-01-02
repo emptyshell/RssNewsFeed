@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -13,6 +14,7 @@ public class RssFeedListAdapter
         extends RecyclerView.Adapter<RssFeedListAdapter.FeedModelViewHolder> {
 
     private List<RssFeedModel> mRssFeedModels;
+
 
     public static class FeedModelViewHolder extends RecyclerView.ViewHolder {
         private View rssFeedView;
@@ -47,5 +49,7 @@ public class RssFeedListAdapter
     public int getItemCount() {
         return mRssFeedModels.size();
     }
+
+
 }
 

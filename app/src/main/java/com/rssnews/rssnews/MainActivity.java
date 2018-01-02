@@ -38,11 +38,13 @@ import android.widget.Toast;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.util.ArrayList;
@@ -197,6 +199,23 @@ public class MainActivity extends AppCompatActivity
                     link = result;
                 } else if (name.equalsIgnoreCase("description")) {
                     description = result;
+                }
+
+
+                if (isNetworkAvailable()) {
+                    List<RssFeedModel> db1 = new PostsDatabase(MainActivity.this).read(currentUrl);
+                    for (RssFeedModel obj : db1) {
+                        if (items.size() > 0) {
+                            boolean deleteStatus = new PostsDatabase(MainActivity.this).delete(obj.id, currentUrl);
+                            if (deleteStatus) {
+                                Log.i("postInfo", "deleted succesfully");
+                            } else {
+                                Log.i("postInfo", "deleted unsuccesfully");
+                            }
+                        } else {
+                            break;
+                        }
+                    }
                 }
 
                 if (title != null && link != null && description != null) {
