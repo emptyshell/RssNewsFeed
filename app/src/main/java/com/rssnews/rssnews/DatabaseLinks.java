@@ -144,13 +144,13 @@ public class DatabaseLinks extends SQLiteOpenHelper {
             }
             String pre,post;
             pre = str.substring(0,str.indexOf(".")+1);
-            Log.d("PRE",pre);
+            //Log.d("PRE",pre);
             str = str.replace(pre, "");
-            Log.d("STR",str);
+            //Log.d("STR",str);
             post = str.substring(str.indexOf("."),str.length());
-            Log.d("POST",post);
+            //Log.d("POST",post);
             str = str.replace(post,"");
-            Log.d("STR",str);
+            //Log.d("STR",str);
             return str;
         }
         return null;

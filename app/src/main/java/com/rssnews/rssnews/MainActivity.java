@@ -165,6 +165,21 @@ public class MainActivity extends AppCompatActivity
             xmlPullParser.setInput(inputStream, null);
 
             xmlPullParser.nextTag();
+            if (isNetworkAvailable()) {
+                List<RssFeedModel> db1 = new PostsDatabase(MainActivity.this).read(currentUrl);
+                for (RssFeedModel obj : db1) {
+                    if (db1.size() > 0) {
+                        boolean deleteStatus = new PostsDatabase(MainActivity.this).delete(obj.id, currentUrl);
+                        if (deleteStatus) {
+                            //Log.i("postInfo", "deleted succesfully");
+                        } else {
+                            //Log.i("postInfo", "deleted unsuccesfully");
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }
             while (xmlPullParser.next() != XmlPullParser.END_DOCUMENT) {
                 int eventType = xmlPullParser.getEventType();
 
@@ -186,7 +201,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
 
-                Log.d("MainActivity", "Parsing name ==> " + name);
+                //Log.d("MainActivity", "Parsing name ==> " + name);
                 String result = "";
                 if (xmlPullParser.next() == XmlPullParser.TEXT) {
                     result = xmlPullParser.getText();
@@ -199,23 +214,6 @@ public class MainActivity extends AppCompatActivity
                     link = result;
                 } else if (name.equalsIgnoreCase("description")) {
                     description = result;
-                }
-
-
-                if (isNetworkAvailable()) {
-                    List<RssFeedModel> db1 = new PostsDatabase(MainActivity.this).read(currentUrl);
-                    for (RssFeedModel obj : db1) {
-                        if (items.size() > 0) {
-                            boolean deleteStatus = new PostsDatabase(MainActivity.this).delete(obj.id, currentUrl);
-                            if (deleteStatus) {
-                                Log.i("postInfo", "deleted succesfully");
-                            } else {
-                                Log.i("postInfo", "deleted unsuccesfully");
-                            }
-                        } else {
-                            break;
-                        }
-                    }
                 }
 
                 if (title != null && link != null && description != null) {
@@ -284,9 +282,9 @@ public class MainActivity extends AppCompatActivity
                 mFeedModelList = parseFeed(inputStream);
                 return true;
             } catch (IOException e) {
-                Log.e("ERROR", "Error", e);
+                //Log.e("ERROR", "Error", e);
             } catch (XmlPullParserException e) {
-                Log.e("ERROR", "Error", e);
+                //Log.e("ERROR", "Error", e);
             }
             return false;
         }
@@ -367,7 +365,7 @@ public class MainActivity extends AppCompatActivity
             outputStreamWriter.close();
         }
         catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
+            //Log.e("Exception", "File write failed: " + e.toString());
         }
     }
 
@@ -383,7 +381,7 @@ public class MainActivity extends AppCompatActivity
         {
             fileContent.append(new String(buffer, 0, n));
         }
-        Log.d("LIMIT", String.valueOf(fileContent));
+        //Log.d("LIMIT", String.valueOf(fileContent));
 //string temp contains all the data of the file.
         fis.close();
         return Integer.parseInt(String.valueOf(fileContent));

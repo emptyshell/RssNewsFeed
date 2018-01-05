@@ -53,7 +53,7 @@ public class PostManager extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     listAvailabla[0] = parent.getItemAtPosition(position).toString();
                     postCount = new PostsDatabase(PostManager.this).countDB(listAvailabla[0]);
-                    Log.d("countDB", Integer.toString(postCount));
+                    //Log.d("countDB", Integer.toString(postCount));
                     textView1.setText("Posts available: "+Integer.toString(postCount));
                 }
 
@@ -87,12 +87,12 @@ public class PostManager extends AppCompatActivity {
                         if(amountRemove[0] > 0) {
                             boolean deleteStatus =new PostsDatabase(PostManager.this).delete(obj.id, listAvailabla[0]);
                             if (deleteStatus) {
-                                Log.i("postInfo", "deleted succesfully");
+                                //Log.i("postInfo", "deleted succesfully");
                                 postCount = new PostsDatabase(PostManager.this).countDB(listAvailabla[0]);
                                 textView1.setText("Posts available: "+Integer.toString(postCount));
                             }
                             else {
-                                Log.i("postInfo", "deleted unsuccesfully");
+                                //Log.i("postInfo", "deleted unsuccesfully");
                             }
                             amountRemove[0]--;
                         }
